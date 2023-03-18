@@ -1,8 +1,13 @@
-﻿namespace Sort_Search
+﻿using System.Runtime.CompilerServices;
+
+namespace Sort_Search
 {
 	class Road
 	{
-		internal static int[] Road_Data(string road_Directory)
+		public int[] Arr { get; set; }
+		public int[] Ascending { get; set; }
+		public int[] Descending { get; set; }
+		public Road(string road_Directory)
 		{
 			var list = new List<int>();
 			try
@@ -12,13 +17,16 @@
 				{
 					list.Add(int.Parse(s));
 				}
-				return list.ToArray();
+				Arr = list.ToArray();
 			}
 			catch (Exception e)
 			{
 				Console.WriteLine($"Exception caught when loading {road_Directory} -> {e}");
 			}
-			return list.ToArray();
+			Arr = list.ToArray();
+			Sorts sorts = new Sorts();
+			Ascending = sorts.Bubble_Sort(Arr, true);
+			Descending = sorts.Bubble_Sort(Arr, false);
 		}
 	}
 }

@@ -6,10 +6,18 @@ internal class Program
 	{
 		int choice;
 		int[] road;
+		
 
-		Road road1 = new Road.Road_Data(@"C:\Users\Kieran\Desktop\Sort-Search\Road_1_256.txt");
-		Road road2 = new Road();
-		Road road3 = new Road();
+		Road road1 = new Road(@"C:\Users\kieran\Desktop\Search _ Sort\Road_1_256.txt");
+		Console.WriteLine("Road1: Array");
+		for (int i = 0; i < road1.Arr.Length - 10; i = i + 10) { Console.WriteLine(road1.Arr[i]); }
+		Console.WriteLine("Road1: Ascending");
+		for (int i = 0; i < road1.Arr.Length - 10; i = i + 10) { Console.WriteLine(road1.Ascending[i]); }
+		Console.WriteLine("Road1: Descending");
+		for (int i = 0; i < road1.Arr.Length - 10; i = i + 10) { Console.WriteLine(road1.Descending[i]); }
+		Road road2 = new Road(@"C:\Users\kieran\Desktop\Search _ Sort\Road_2_256.txt");
+		Road road3 = new Road(@"C:\Users\kieran\Desktop\Search _ Sort\Road_3_256.txt");
+
 		while (true)
 		{
 			try
@@ -18,25 +26,17 @@ internal class Program
 				choice = int.Parse(Console.ReadLine()); // Reads input
 				if (choice > 0 && choice < 4) // prevent out of bound errors
 				{ 
-					if (choice == 1) 
-					{ 
-						road = Road.Road_Data(@"C:\Users\Kieran\Desktop\Sort-Search\Road_1_256.txt"); 
-					}
-					else if (choice == 2) 
-					{
-						road = Road.Road_Data(@"C:\Users\Kieran\Desktop\Sort-Search\Road_2_256.txt"); 
-					}
-					else if (choice == 3) 
-					{ 
-						road = Road.Road_Data(@"C:\Users\Kieran\Desktop\Sort-Search\Road_3_256.txt"); 
-					}
+					if (choice == 1) { road = road1.Arr; }
+					else if (choice == 2) { road = road2.Arr; }
+					else if (choice == 3) { road = road3.Arr; }
 					break; 
 				} 
 				else { Console.WriteLine("Not a valid number\n"); }
 			}
 			catch { Console.WriteLine("Not a number\n"); }
 		}
-		Console.WriteLine(road);
+
+		/*
 		while (true)
 		{
 			try
@@ -54,5 +54,6 @@ internal class Program
 			}
 			catch { Console.WriteLine("Not a number\n"); }
 		}
+		*/
 	}
 }
