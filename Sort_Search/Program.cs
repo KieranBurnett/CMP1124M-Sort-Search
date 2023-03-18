@@ -6,18 +6,18 @@ internal class Program
 	{
 		int choice;
 		int[] road;
-		
 
 		Road road1 = new Road(@"C:\Users\kieran\Desktop\Search _ Sort\Road_1_256.txt");
-		Console.WriteLine("Road1: Array");
-		for (int i = 0; i < road1.Arr.Length - 10; i = i + 10) { Console.WriteLine(road1.Arr[i]); }
-		Console.WriteLine("Road1: Ascending");
-		for (int i = 0; i < road1.Arr.Length - 10; i = i + 10) { Console.WriteLine(road1.Ascending[i]); }
-		Console.WriteLine("Road1: Descending");
-		for (int i = 0; i < road1.Arr.Length - 10; i = i + 10) { Console.WriteLine(road1.Descending[i]); }
 		Road road2 = new Road(@"C:\Users\kieran\Desktop\Search _ Sort\Road_2_256.txt");
 		Road road3 = new Road(@"C:\Users\kieran\Desktop\Search _ Sort\Road_3_256.txt");
 
+		Console.WriteLine("Road1: Array");
+		for (int i = 0; i < road1.Arr.Length; i = i + 10) { Console.WriteLine(road1.Arr[i]); }
+		Console.WriteLine("Road1: Ascending");
+		for (int i = 0; i < road1.Arr.Length; i = i + 10) { Console.WriteLine(road1.Ascending[i]); }
+		Console.WriteLine("Road1: Descending");
+		for (int i = 0; i < road1.Arr.Length;  i = i + 10) { Console.WriteLine(road1.Descending[i]); }
+		/*
 		while (true)
 		{
 			try
@@ -36,7 +36,7 @@ internal class Program
 			catch { Console.WriteLine("Not a number\n"); }
 		}
 
-		/*
+		
 		while (true)
 		{
 			try

@@ -4,9 +4,9 @@ namespace Sort_Search
 {
 	class Road
 	{
-		public int[] Arr { get; set; }
-		public int[] Ascending { get; set; }
-		public int[] Descending { get; set; }
+		public int[] Arr;
+		public int[] Ascending;
+		public int[] Descending;
 		public Road(string road_Directory)
 		{
 			var list = new List<int>();
@@ -19,14 +19,13 @@ namespace Sort_Search
 				}
 				Arr = list.ToArray();
 			}
-			catch (Exception e)
+			catch
 			{
-				Console.WriteLine($"Exception caught when loading {road_Directory} -> {e}");
+				Console.WriteLine($"Problem with finding {road_Directory}");
 			}
 			Arr = list.ToArray();
-			Sorts sorts = new Sorts();
-			Ascending = sorts.Bubble_Sort(Arr, true);
-			Descending = sorts.Bubble_Sort(Arr, false);
+			Ascending = Sorts.Bubble_Sort(Arr, true);
+			Descending = Sorts.Reverse(Ascending);
 		}
 	}
 }
