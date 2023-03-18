@@ -17,6 +17,10 @@ internal class Program
 		for (int i = 0; i < road1.Ascending.Length; i = i + 10) { Console.WriteLine(road1.Ascending[i]); }
 		Console.WriteLine("Road1: Descending");
 		for (int i = 0; i < road1.Descending.Length;  i = i + 10) { Console.WriteLine(road1.Descending[i]); }
+
+		int[] indexes=Searches.Binary_Search(road1.Ascending, 38);
+		foreach (int i in indexes) { Console.WriteLine(road1.Ascending[i] +" at "+i); } // outputs each value of indexes
+
 		/*
 		while (true)
 		{
