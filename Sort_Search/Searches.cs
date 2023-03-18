@@ -30,13 +30,14 @@
 						}
 					}
 					above++;
-					below--;
+					if (below > 0) { below--; }
 				}
 			}
 			return list.ToArray();
 		}
 		// as binary only finds one value, could then look left and right however than results in o(n) for large sample sizes
 		// instead do recursive binary seach each side to remain with o(log(n))
+		/*
 		public static int[] Binary_Search(int[] arr, int value)
 		{
 			Console.WriteLine("Searching for " + value);
@@ -76,6 +77,6 @@
 			// if list is empty,try using the number above and below the value,
 			
 			return list.ToArray();
-		}
+		} */
 	}
 }
