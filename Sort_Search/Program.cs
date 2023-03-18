@@ -18,7 +18,7 @@ internal class Program
 		Console.WriteLine("Road1: Descending");
 		for (int i = 0; i < road1.Descending.Length;  i = i + 10) { Console.WriteLine(road1.Descending[i]); }
 
-		int[] indexes=Searches.Binary_Search(road1.Ascending, 38);
+		int[] indexes=Searches.Binary_Search(road1.Ascending, 37);
 		foreach (int i in indexes) { Console.WriteLine(road1.Ascending[i] +" at "+i); } // outputs each value of indexes
 
 		/*

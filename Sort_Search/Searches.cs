@@ -19,7 +19,7 @@ namespace Sort_Search
 					list.Add(i);
 				}
 			}
-			// if list is empty, rerun the method using the number above and below the value
+			// if list is empty, try using the number above and below the value
 			if (list.Count == 0)
 			{
 				int above = value + 1;
@@ -65,7 +65,7 @@ namespace Sort_Search
 				}
 				mid = (min + max) / 2;
 			}
-			// if list is empty, rerun the method using the number above and below the value
+			// if list is empty,try using the number above and below the value
 			if (list.Count == 0)
 			{
 				int above = value + 1;
