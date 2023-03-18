@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace Sort_Search
+﻿namespace Sort_Search
 {
 	class Road
 	{

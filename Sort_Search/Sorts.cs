@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices;
-
-namespace Sort_Search
+﻿namespace Sort_Search
 {
 	class Sorts
 	{

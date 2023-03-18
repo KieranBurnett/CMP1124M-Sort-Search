@@ -1,5 +1,4 @@
 ﻿using Sort_Search;
-
 internal class Program
 {
 	private static void Main(string[] args)
