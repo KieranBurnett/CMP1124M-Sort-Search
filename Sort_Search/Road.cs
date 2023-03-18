@@ -4,7 +4,7 @@ namespace Sort_Search
 {
 	class Road
 	{
-		public int[] Arr;
+		public int[] Unsorted_array;
 		public int[] Ascending;
 		public int[] Descending;
 		public Road(string road_Directory)
@@ -17,15 +17,15 @@ namespace Sort_Search
 				{
 					list.Add(int.Parse(s));
 				}
-				Arr = list.ToArray();
+				Unsorted_array = list.ToArray();
 			}
 			catch
 			{
 				Console.WriteLine($"Problem with finding {road_Directory}");
 			}
-			Arr = list.ToArray();
-			Ascending = Sorts.Bubble_Sort(Arr, true);
-			Descending = Sorts.Reverse(Ascending);
+			Unsorted_array = list.ToArray();
+			Ascending = Sorts.Selection_Sort(Unsorted_array);
+			Descending = Sorts.Flip(Ascending);
 		}
 	}
 }

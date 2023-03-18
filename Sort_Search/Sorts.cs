@@ -4,57 +4,94 @@ namespace Sort_Search
 {
 	class Sorts
 	{
-		public static int[] Reverse(int[] arr)
+		public static int[] Flip(int[] arr)
 		{
-			int temp;
-			for (int i = 0; i < arr.Length / 2; i++)
-			{
-				temp = arr[i];
-				arr[i] = arr[arr.Length - i - 1];
-				arr[arr.Length - i - 1] = temp;
-			}
-			return arr;
-		}
-		public static int[] Bubble_Sort(int[] arr, bool Ascending)
-		{
-			int temp;
+			int[] Descending = new int[arr.Length];
 			for (int i = 0; i < arr.Length; i++)
 			{
-				for (int n = 0; n < arr.Length - 1; n++)
+				Descending[i] = arr[arr.Length - 1 - i];
+			}
+			return Descending;
+		}
+		public static int[] Bubble_Sort(int[] arr)
+		{
+			int[] sorted = new int[arr.Length];
+			for (int i = 0; i < arr.Length; i++)
+			{
+				sorted[i] = arr[i];
+			}
+			int temp;
+			for (int i = 0; i < sorted.Length - 1; i++)
+			{
+				for (int j = 0; j < sorted.Length - i - 1; j++)
 				{
-					if (Ascending) 
+					if (sorted[j] > sorted[j + 1])
 					{
-						if (arr[n] > arr[n + 1])
-						{
-							temp = arr[n + 1]; arr[n+1] = arr[n]; arr[n] = temp;
-						}
-					}
-					else
-					{
-						if (arr[n] < arr[n + 1])
-						{
-							temp =	arr[n + 1]; arr[n + 1] = arr[n]; arr[n] = temp;
-						}
+						temp = sorted[j];
+						sorted[j] = sorted[j + 1];
+						sorted[j + 1] = temp;
 					}
 				}
 			}
-			return arr;
+			return sorted;
 		}
 		public static int[] Insertion_Sort(int[] arr)
 		{
-			int i, key, j;
-			for (i = 1; i < arr.Length; i++)
+			int[] sorted = new int[arr.Length];
+			for (int i = 0; i < arr.Length; i++)
 			{
-				key = arr[i];
-				j = i - 1;
-				while (j >= 0 && arr[j] > key)
-				{
-					arr[j + 1] = arr[j];
-					j = j - 1;
-				}
-				arr[j + 1] = key;
+				sorted[i] = arr[i];
 			}
-			return arr;
+			int temp;
+			for (int i = 1; i < sorted.Length; i++)
+			{
+				for (int j = i; j > 0; j--)
+				{
+					if (sorted[j] < sorted[j - 1])
+					{
+						temp = sorted[j];
+						sorted[j] = sorted[j - 1];
+						sorted[j - 1] = temp;
+					}
+				}
+			}
+			return sorted;
+		}
+		public static int[] Selection_Sort(int[] arr)
+		{
+			int[] sorted = new int[arr.Length];
+			for (int i = 0; i < arr.Length; i++)
+			{
+				sorted[i] = arr[i];
+			}
+			int temp;
+			for (int i = 0; i < sorted.Length - 1; i++)
+			{
+				int min = i;
+				for (int j = i + 1; j < sorted.Length; j++)
+				{
+					if (sorted[j] < sorted[min])
+					{
+						min = j;
+					}
+				}
+				temp = sorted[i];
+				sorted[i] = sorted[min];
+				sorted[min] = temp;
+			}
+			return sorted;
+		}
+		public static int[] Quick_Sort(int[] arr)
+		{
+			if (arr.Length <= 1)
+			{
+				return arr;
+			}
+			int pivot = arr[arr.Length / 2];
+			int[] left = arr.Where(x => x < pivot).ToArray();
+			int[] middle = arr.Where(x => x == pivot).ToArray();
+			int[] right = arr.Where(x => x > pivot).ToArray();
+			return (Quick_Sort(left).Concat(middle).Concat(Quick_Sort(right)).ToArray());
 		}
 	}
 }

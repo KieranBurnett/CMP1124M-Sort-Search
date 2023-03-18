@@ -11,12 +11,12 @@ internal class Program
 		Road road2 = new Road(@"C:\Users\kieran\Desktop\Search _ Sort\Road_2_256.txt");
 		Road road3 = new Road(@"C:\Users\kieran\Desktop\Search _ Sort\Road_3_256.txt");
 
-		Console.WriteLine("Road1: Array");
-		for (int i = 0; i < road1.Arr.Length; i = i + 10) { Console.WriteLine(road1.Arr[i]); }
+		Console.WriteLine("Road1: Unsorted array");
+		for (int i = 0; i < road1.Unsorted_array.Length; i = i + 10) { Console.WriteLine(road1.Unsorted_array[i]); }
 		Console.WriteLine("Road1: Ascending");
-		for (int i = 0; i < road1.Arr.Length; i = i + 10) { Console.WriteLine(road1.Ascending[i]); }
+		for (int i = 0; i < road1.Ascending.Length; i = i + 10) { Console.WriteLine(road1.Ascending[i]); }
 		Console.WriteLine("Road1: Descending");
-		for (int i = 0; i < road1.Arr.Length;  i = i + 10) { Console.WriteLine(road1.Descending[i]); }
+		for (int i = 0; i < road1.Descending.Length;  i = i + 10) { Console.WriteLine(road1.Descending[i]); }
 		/*
 		while (true)
 		{
