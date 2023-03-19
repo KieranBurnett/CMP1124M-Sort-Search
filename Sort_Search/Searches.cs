@@ -27,7 +27,7 @@
 						if (arr[i] == above || arr[i] == below)
 						{
 							list.Add(i);
-							Console.WriteLine("Found " + arr[i] + " at index " + i + ".");
+							//Console.WriteLine("Found " + arr[i] + " at index " + i + ".");
 						}
 					}
 					above++;
