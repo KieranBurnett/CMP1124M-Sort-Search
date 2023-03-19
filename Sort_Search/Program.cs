@@ -6,25 +6,25 @@ internal class Program
 		int choice;
 		int[] road;
 
-		// lookup how to get directory of solution project from user and output directly 
-		// with File.ReadAllLines("data/" + path)
+		string path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+		path=path.Replace(@"Sort_Search\bin\Debug\net6.0", "");
+		
+		// C:\Users\Kieran\source\repos\KieranBurnett\CMP1124M-Sort-Search\Road_1_256.txt
+		// C:\Users\Kieran\Source\Repos\KieranBurnett\CMP1124M-Sort-Search\Sort_Search\bin\Debug\net6.0
 
-		// get file path from solution project
-		// https://stackoverflow.com/questions/1377246/getting-the-path-of-the-assembly-the-code-is-in
+		Road road1 = new Road(path + "Road_1_256.txt");
+		Road road2 = new Road(path + "Road_2_256.txt");
+		Road road3 = new Road(path + "Road_3_256.txt");
 
-		Road road1 = new Road(@"C:\Users\kieran\Desktop\Search _ Sort\Road_1_2048.txt");
-		Road road2 = new Road(@"C:\Users\kieran\Desktop\Search _ Sort\Road_2_256.txt");
-		Road road3 = new Road(@"C:\Users\kieran\Desktop\Search _ Sort\Road_3_2048.txt");
-
-		/*
+		
 		Console.WriteLine("Road1: Ascending");
 		for (int i = 0; i < road1.Ascending.Length; i = i + 10) { Console.WriteLine(road1.Ascending[i]); }
 		Console.WriteLine("Road1: Descending");
 		for (int i = 0; i < road1.Descending.Length;  i = i + 10) { Console.WriteLine(road1.Descending[i]); }
-		*/
+		
 
-		int[] indexes=Searches.Linear_Search(road1.Ascending, -5);
-		foreach (int i in indexes) { Console.WriteLine(road1.Ascending[i] +" at "+i); } // outputs each value of indexes
+		//int[] indexes=Searches.Linear_Search(road1.Ascending, 3);
+		// (int i in indexes) { Console.WriteLine(road1.Ascending[i] +" at "+i); } // outputs each value of indexes
 
 		
 		while (true)
@@ -45,7 +45,7 @@ internal class Program
 			}
 			catch { Console.WriteLine("Not a number\n"); }
 		}
-		Console.WriteLine(road);
+		//Console.WriteLine(road);
 		/*
 		while (true)
 		{
