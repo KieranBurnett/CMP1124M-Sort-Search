@@ -6,6 +6,12 @@ internal class Program
 		int choice;
 		int[] road;
 
+		// lookup how to get directory of solution project from user and output directly 
+		// with File.ReadAllLines("data/" + path)
+
+		// get file path from solution project
+		// https://stackoverflow.com/questions/1377246/getting-the-path-of-the-assembly-the-code-is-in
+
 		Road road1 = new Road(@"C:\Users\kieran\Desktop\Search _ Sort\Road_1_2048.txt");
 		Road road2 = new Road(@"C:\Users\kieran\Desktop\Search _ Sort\Road_2_256.txt");
 		Road road3 = new Road(@"C:\Users\kieran\Desktop\Search _ Sort\Road_3_2048.txt");
