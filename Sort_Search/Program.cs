@@ -32,14 +32,14 @@ internal class Program
 					int choice = int.Parse(Console.ReadLine()); // Reads input
 					if (choice >= 0 && choice < 1000)
 					{
-						int[] indexes=Searches.Linear_Search(road.Ascending, choice);
+						int[] indexes=Searches.BinarySearch(road.Ascending, choice).ToArray();
 						Console.WriteLine("\nFound:");
 						foreach (int i in indexes) { Console.WriteLine(road.Ascending[i] +" at "+i); } // outputs each value of indexes
 						break;
 					}
 					else { Console.WriteLine("Not a valid number\n"); }
 				}
-				catch { Console.WriteLine("Not a number\n"); }
+				catch (Exception e){ Console.WriteLine(e+"\nNot a number\n"); }
 			}
 		}
 	}

@@ -28,13 +28,10 @@
 			Ascending = Sorts.Selection_Sort(Unsorted_array);
 			Descending = Sorts.Flip(Ascending);
 		}
-		//write a method that will display every 10th value of the ascending array
 		public void Display()
 		{
-			int amount = 10;
-			if (Convert.ToString(Id).Substring(7, 4) == "2048") { amount = 50; }
-			Console.WriteLine(Convert.ToString(Id).Substring(7, 3));
-			Console.WriteLine("Printing every"+amount);
+			int amount = 50;
+			if (Convert.ToString(Id).Substring(7, 3) == "256") { amount = 10; }
 			Console.WriteLine(Id + " Ascending: ");
 			for (int i = 0; i < Ascending.Length; i++)
 				{

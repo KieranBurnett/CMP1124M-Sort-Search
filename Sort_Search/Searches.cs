@@ -1,11 +1,13 @@
-﻿namespace Sort_Search
+﻿using System.Linq;
+
+namespace Sort_Search
 {
 	class Searches
 	{
 		// o(n)
 		public static int[] Linear_Search(int[] arr, int value)
 		{
-			Console.WriteLine("Searching for "+value);
+			Console.WriteLine("Searching for " + value);
 			var list = new List<int>();
 			for (int i = 0; i < arr.Length; i++)
 			{
@@ -35,48 +37,118 @@
 			}
 			return list.ToArray();
 		}
-		// as binary only finds one value, could then look left and right however than results in o(n) for large sample sizes
-		// instead do recursive binary seach each side to remain with o(log(n))
-		/*
-		public static int[] Binary_Search(int[] arr, int value)
+		public static int[] BinarySearch(int[] arr, int value)
 		{
-			Console.WriteLine("Searching for " + value);
-			var list = new List<int>();
-			int[] sorted = Sorts.Selection_Sort(arr);
-			int min = 0;
-			int max = sorted.Length - 1;
-			int mid = (min + max) / 2;
-			while (min <= max)
+			if (value < 0 || value > 999)
 			{
-				if (sorted[mid] == value)
+				return new int[] { };
+			}
+
+			List<int> indices = new List<int>();
+
+			int left = 0;
+			int right = arr.Length - 1;
+			int mid;
+
+			while (left <= right)
+			{
+				mid = (left + right) / 2;
+
+				if (arr[mid] == value)
 				{
-					// begin recursive binary search above and below
-					int upperBound = mid - 1;
-					int i = upperBound;
-					do
+					indices.Add(mid);
+
+					// Find lower bound
+					int lower = mid - 1;
+					while (lower >= 0 && arr[lower] == value)
 					{
-						upperBound = i;
-						// doesnt work as Binary_search returns an array but i is an int, mean bottom index and top index
-						// will have to be stored outside the method
-						// to go for values above and below it will have to be a for loop until its broken if a value is found
-						i = Binary_Search(arr, value);
-					} while (i != -1)
-					list.Add(mid);
-					break;
+						indices.Add(lower);
+						lower--;
+					}
+
+					// Find upper bound
+					int upper = mid + 1;
+					while (upper < arr.Length && arr[upper] == value)
+					{
+						indices.Add(upper);
+						upper++;
+					}
+
+					return indices.ToArray();
 				}
-				else if (sorted[mid] < value)
+				else if (arr[mid] < value)
 				{
-					min = mid + 1;
+					left = mid + 1;
 				}
 				else
 				{
-					max = mid - 1;
+					right = mid - 1;
 				}
-				mid = (min + max) / 2;
 			}
-			// if list is empty,try using the number above and below the value,
-			
-			return list.ToArray();
-		} */
+
+			// If target value is not found, search for next closest values
+			int greater = value + 1;
+			int lesser = value - 1;
+
+			while (indices.Count == 0 && (greater <= 999 || lesser >= 0))
+			{
+				if (greater <= 999)
+				{
+					int leftIndex = 0;
+					int rightIndex = arr.Length - 1;
+
+					while (leftIndex <= rightIndex)
+					{
+						int midIndex = (leftIndex + rightIndex) / 2;
+
+						if (arr[midIndex] == greater)
+						{
+							indices.Add(midIndex);
+							break;
+						}
+						else if (arr[midIndex] < greater)
+						{
+							leftIndex = midIndex + 1;
+						}
+						else
+						{
+							rightIndex = midIndex - 1;
+						}
+					}
+
+					greater++;
+				}
+
+				if (lesser >= 0)
+				{
+					int leftIndex = 0;
+					int rightIndex = arr.Length - 1;
+
+					while (leftIndex <= rightIndex)
+					{
+						int midIndex = (leftIndex + rightIndex) / 2;
+
+						if (arr[midIndex] == lesser)
+						{
+							indices.Add(midIndex);
+							break;
+						}
+						else if (arr[midIndex] < lesser)
+						{
+							leftIndex = midIndex + 1;
+						}
+						else
+						{
+							rightIndex = midIndex - 1;
+						}
+					}
+
+					lesser--;
+				}
+			}
+
+			return indices.ToArray();
+		}
+
 	}
 }
