@@ -1,65 +1,67 @@
 ﻿using Sort_Search;
 internal class Program
 {
+	public static Road road1_256;
+	public static Road road1_2048;
+	public static Road road2_256;
+	public static Road road2_2048;
+	public static Road road3_256;
+	public static Road road3_2048;
 	private static void Main(string[] args)
 	{
 		string path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 		path = path.Replace(@"Sort_Search\bin\Debug\net6.0", "");
 
-		Road road1 = new Road(path + "Road_1_256.txt");
-		Road road2 = new Road(path + "Road_2_256.txt");
-		Road road3 = new Road(path + "Road_3_256.txt");
+		road1_256 = new Road(path, "Road_1_256");
+		road1_2048 = new Road(path, "Road_1_2048");
+		road2_256 = new Road(path, "Road_2_256");
+		road2_2048 = new Road(path, "Road_2_2048");
+		road3_256 = new Road(path, "Road_3_256");
+		road3_2048 = new Road(path, "Road_3_2048");
 
-		/*
-		Console.WriteLine("Road1: Ascending");
-		for (int i = 0; i < road1.Ascending.Length; i = i + 10) { Console.WriteLine(road1.Ascending[i]); }
-		Console.WriteLine("Road1: Descending");
-		for (int i = 0; i < road1.Descending.Length;  i = i + 10) { Console.WriteLine(road1.Descending[i]); }
-
-		int[] indexes=Searches.Linear_Search(road1.Ascending, 3);
-		Console.WriteLine("\nFound:");
-		foreach (int i in indexes) { Console.WriteLine(road1.Ascending[i] +" at "+i); } // outputs each value of indexes
-		*/
-
-		int choice;
-		int[] road;
 		while (true)
 		{
-			try
-			{
-				Console.WriteLine("Which array out of the following;\n(1) Road_1_256,\n(2) Road_2_256,\n(3) Road_3_256, ");
-				choice = int.Parse(Console.ReadLine()); // Reads input
-				if (choice > 0 && choice < 4) // prevent out of bound errors
-				{ 
-					if (choice == 1) { road = road1.Ascending; }
-					else if (choice == 2) { road = road2.Ascending; }
-					else if (choice == 3) { road = road3.Ascending; }
-					else { road = new int[] { 0 }; } // default value
-					break; 
-				} 
-				else { Console.WriteLine("Not a valid number\n"); }
+			Road road = Select_Road();
+			road.Display();
 
-			}
-			catch { Console.WriteLine("Not a number\n"); }
-		}
-		/*
-		while (true)
-		{
-			try
-			{
-				Console.WriteLine("Input a number to search for");
-				choice = int.Parse(Console.ReadLine()); // Reads input
-				if (choice > 0 && choice < 1000) 
-				{ 
-					Console.WriteLine("Ascending sort..");
-					road = Sorts.Bubble_Sort(road);
-					break; 
+			while (true) // Helps ensure program doesnt continue if an incorrect value is inputted
+			{ 
+				try
+				{
+					Console.WriteLine("Input a number to search for: ");
+					int choice = int.Parse(Console.ReadLine()); // Reads input
+					if (choice >= 0 && choice < 1000)
+					{
+						int[] indexes=Searches.Linear_Search(road.Ascending, choice);
+						Console.WriteLine("\nFound:");
+						foreach (int i in indexes) { Console.WriteLine(road.Ascending[i] +" at "+i); } // outputs each value of indexes
+						break;
+					}
+					else { Console.WriteLine("Not a valid number\n"); }
 				}
-				else if (choice == 2) { Console.WriteLine("descending sort"); break; }
-				else { Console.WriteLine("Not a valid number\n"); }
+				catch { Console.WriteLine("Not a number\n"); }
 			}
-			catch { Console.WriteLine("Not a number\n"); }
 		}
-		*/
+	}
+	internal static Road Select_Road()
+	{
+		while (true)
+		{
+			try
+			{
+				Console.WriteLine("Which road:\n(1) Road_1_256,\n(2) Road_1_2048,\n(3) Road_2_256," +
+											"\n(4) Road_2_2048,\n(5) Road_3_256,\n(6) Road_3_2048,\n(7) None, ");
+				int choice = int.Parse(Console.ReadLine());
+				if (choice == 1) { return road1_256; }
+				else if (choice == 2) { return road1_2048; }
+				else if (choice == 3) { return road2_256; }
+				else if (choice == 4) { return road2_2048; }
+				else if (choice == 5) { return road3_256; }
+				else if (choice == 6) { return road3_2048; }
+				else if (choice == 7) { Environment.Exit(0); }
+				else { Console.WriteLine("Invalid number!"); }
+			}
+			catch { Console.WriteLine("Not a valid number"); };
+		}
 	}
 }
