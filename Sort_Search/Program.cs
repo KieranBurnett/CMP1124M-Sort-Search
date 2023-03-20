@@ -51,7 +51,7 @@ internal class Program
 		{
 			try
 			{
-				Console.WriteLine("Which road:\n(1) Road_1_256,\n(2) Road_2_256,\n(3) Road_3_256," +
+				Console.WriteLine("\nChoose a road to query:\n(1) Road_1_256,\n(2) Road_2_256,\n(3) Road_3_256," +
 											"\n(4) Road_1_2048,\n(5) Road_2_2048,\n(6) Road_3_2048," +
 											"\n(7) Merge,\n(8) None, ");
 				int choice = int.Parse(Console.ReadLine());

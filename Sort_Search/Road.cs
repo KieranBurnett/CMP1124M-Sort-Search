@@ -25,7 +25,25 @@
 				Console.WriteLine($"Problem with finding {file_Path}");
 			}
 			Unsorted_array = list.ToArray();
-			Ascending = Sorts.Selection_Sort(Unsorted_array);
+			while (true) // Helps ensure program doesnt continue if an incorrect value is inputted
+			{
+				try
+				{
+					Console.WriteLine("\nChoose for "+Id+":\n(1) Bubble Sort,\n(2) Insertion Sort,\n(3) Merge Sort,\n(4) Quick Sort");
+					int choice = int.Parse(Console.ReadLine());
+					var watch = System.Diagnostics.Stopwatch.StartNew();
+					if (choice == 1) { Ascending = Sorts.Bubble_Sort(Unsorted_array); watch.Stop(); Console.WriteLine("Roughly " + watch.ElapsedMilliseconds+"ms elapsed"); break; }
+					else if (choice == 2) { Ascending = Sorts.Insertion_Sort(Unsorted_array); watch.Stop(); Console.WriteLine("Roughly " + watch.ElapsedMilliseconds + "ms elapsed"); break; }
+					else if (choice == 3) { Ascending = Sorts.Selection_Sort(Unsorted_array); watch.Stop(); Console.WriteLine("Roughly " + watch.ElapsedMilliseconds + "ms elapsed"); break; }
+					else if (choice == 4) { Ascending = Sorts.Quick_Sort(Unsorted_array); watch.Stop(); Console.WriteLine("Roughly " + watch.ElapsedMilliseconds + "ms elapsed"); break; }
+					else { Console.WriteLine("Not a valid number in this case,"); }
+				}
+				catch
+				{
+					Console.WriteLine("Please enter a valid number.");
+					continue;
+				}
+			}
 			Descending = Sorts.Flip(Ascending);
 		}
 		public Road(Road First, Road Second) // for merging roads
@@ -36,7 +54,25 @@
 			}
 			else { Id = "Road_Merge_256"; }
 			Unsorted_array = First.Unsorted_array.Concat(Second.Unsorted_array).ToArray();
-			Ascending = Sorts.Selection_Sort(Unsorted_array);
+			while (true) // Helps ensure program doesnt continue if an incorrect value is inputted
+			{
+				try
+				{
+					Console.WriteLine("\nChoose for " + Id + ":\n(1) Bubble Sort,\n(2) Insertion Sort,\n(3) Merge Sort,\n(4) Quick Sort");
+					int choice = int.Parse(Console.ReadLine());
+					var watch = System.Diagnostics.Stopwatch.StartNew();
+					if (choice == 1) { Ascending = Sorts.Bubble_Sort(Unsorted_array); watch.Stop(); Console.WriteLine("Roughly "+watch.ElapsedMilliseconds + "ms elapsed"); break; }
+					else if (choice == 2) { Ascending = Sorts.Insertion_Sort(Unsorted_array); watch.Stop(); Console.WriteLine("Roughly " + watch.ElapsedMilliseconds + "ms elapsed"); break; }
+					else if (choice == 3) { Ascending = Sorts.Selection_Sort(Unsorted_array); watch.Stop(); Console.WriteLine("Roughly " + watch.ElapsedMilliseconds + "ms elapsed"); break; }
+					else if (choice == 4) { Ascending = Sorts.Quick_Sort(Unsorted_array); watch.Stop(); Console.WriteLine("Roughly " + watch.ElapsedMilliseconds + "ms elapsed"); break; }
+					else { Console.WriteLine("Not a valid number in this case,"); }
+				}
+				catch
+				{
+					Console.WriteLine("Please enter a valid number.");
+					continue;
+				}
+			}
 			Descending = Sorts.Flip(Ascending);
 		}
 		public void Display()
