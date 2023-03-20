@@ -2,7 +2,6 @@
 {
 	class Searches
 	{
-		// o(n)
 		public static int[] Linear_Search(int[] arr, int value)
 		{
 			Console.WriteLine("Searching for " + value);
@@ -55,7 +54,6 @@
 						indexes.Add(lower);
 						lower--;
 					}
-
 					indexes.Add(mid);
 
 					int upper = mid + 1;
@@ -64,7 +62,6 @@
 						indexes.Add(upper);
 						upper++;
 					}
-
 					return indexes.ToArray();
 				}
 				else if (arr[mid] < value)
@@ -84,7 +81,7 @@
 				int below = value;
 				while (indexes.Count==0)
 				{					
-					if (above < 999) 
+					if (above <= 999) 
 					{ 
 						above++;
 						indexes.AddRange(Binary_Search(arr, above, false)); 
