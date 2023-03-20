@@ -29,19 +29,38 @@ internal class Program
 			{ 
 				try
 				{
+					Console.WriteLine("\nChoose a search method:\n(1) Linear Search,\n(2) Binary Search, ");
+					int search_Choice = int.Parse(Console.ReadLine());
 					Console.WriteLine("Input a number to search for: ");
-					int choice = int.Parse(Console.ReadLine()); // Reads input
-					if (choice >= 0 && choice <= 1000)
+					int query = int.Parse(Console.ReadLine()); // Reads input
+					if (query >= 0 && query <= 1000)
 					{
-						int[] indexes=Searches.Binary_Search(road.Ascending, choice, true).ToArray();
-						Console.WriteLine("\nFound:");
-						foreach (int i in indexes) { Console.WriteLine(road.Ascending[i] +" at "+i); } // outputs each value of indexes
-						Console.WriteLine("");
-						break;
+						int[] indexes = { 0 };
+						if (search_Choice == 1)
+						{
+							var watch = System.Diagnostics.Stopwatch.StartNew();
+							indexes = Searches.Linear_Search(road.Ascending, query).ToArray();
+							watch.Stop(); Console.WriteLine("Roughly " + watch.ElapsedMilliseconds + "ms elapsed");
+							Console.WriteLine("\nFound:");
+							foreach (int i in indexes) { Console.WriteLine(road.Ascending[i] + " at " + i); } // outputs each value of indexes
+							Console.WriteLine("");
+							break;
+						}
+						else if (search_Choice == 2)
+						{
+							var watch = System.Diagnostics.Stopwatch.StartNew();
+							indexes = Searches.Binary_Search(road.Ascending, query, true).ToArray();
+							watch.Stop(); Console.WriteLine("Roughly " + watch.ElapsedMilliseconds + "ms elapsed");
+							Console.WriteLine("\nFound:");
+							foreach (int i in indexes) { Console.WriteLine(road.Ascending[i] + " at " + i); } // outputs each value of indexes
+							Console.WriteLine("");
+							break;
+						}
+						else { Console.WriteLine("Invalid input\n"); }
 					}
-					else { Console.WriteLine("Not a valid number\n"); }
+					else { Console.WriteLine("Invalid input\n"); }
 				}
-				catch (Exception e){ Console.WriteLine(e+"\nNot a number\n"); }
+				catch (Exception e){ Console.WriteLine(e + "\nOne of your inputs was not a number\n"); }
 			}
 		}
 	}
