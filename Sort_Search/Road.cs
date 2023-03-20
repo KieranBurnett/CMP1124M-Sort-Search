@@ -48,6 +48,7 @@
 					Console.WriteLine(Descending[i]);
 				}
 			}
+			Console.WriteLine("");
 		}
 	}
 }

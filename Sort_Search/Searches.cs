@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace Sort_Search
+﻿namespace Sort_Search
 {
 	class Searches
 	{
@@ -37,118 +35,69 @@ namespace Sort_Search
 			}
 			return list.ToArray();
 		}
-		public static int[] BinarySearch(int[] arr, int value)
+		public static int[] Binary_Search(int[] arr, int value, bool first_Pass)
 		{
-			if (value < 0 || value > 999)
+			List<int> indexes = new List<int>();
+
+			int min = 0;
+			int max = arr.Length - 1;
+
+			while (min <= max)
 			{
-				return new int[] { };
-			}
-
-			List<int> indices = new List<int>();
-
-			int left = 0;
-			int right = arr.Length - 1;
-			int mid;
-
-			while (left <= right)
-			{
-				mid = (left + right) / 2;
+				int mid = (min + max) / 2;
 
 				if (arr[mid] == value)
 				{
-					indices.Add(mid);
-
-					// Find lower bound
+					// Value found, find all occurrences
 					int lower = mid - 1;
 					while (lower >= 0 && arr[lower] == value)
 					{
-						indices.Add(lower);
+						indexes.Add(lower);
 						lower--;
 					}
 
-					// Find upper bound
+					indexes.Add(mid);
+
 					int upper = mid + 1;
 					while (upper < arr.Length && arr[upper] == value)
 					{
-						indices.Add(upper);
+						indexes.Add(upper);
 						upper++;
 					}
 
-					return indices.ToArray();
+					return indexes.ToArray();
 				}
 				else if (arr[mid] < value)
 				{
-					left = mid + 1;
+					min = mid + 1;
 				}
 				else
 				{
-					right = mid - 1;
+					max = mid - 1;
 				}
 			}
-
-			// If target value is not found, search for next closest values
-			int greater = value + 1;
-			int lesser = value - 1;
-
-			while (indices.Count == 0 && (greater <= 999 || lesser >= 0))
+			// Value not found, try next larger and smaller values
+			if (indexes.Count == 0 && first_Pass)
 			{
-				if (greater <= 999)
-				{
-					int leftIndex = 0;
-					int rightIndex = arr.Length - 1;
-
-					while (leftIndex <= rightIndex)
-					{
-						int midIndex = (leftIndex + rightIndex) / 2;
-
-						if (arr[midIndex] == greater)
-						{
-							indices.Add(midIndex);
-							break;
-						}
-						else if (arr[midIndex] < greater)
-						{
-							leftIndex = midIndex + 1;
-						}
-						else
-						{
-							rightIndex = midIndex - 1;
-						}
+				Console.WriteLine("Unable to find "+value);
+				int above = value;
+				int below = value;
+				while (indexes.Count==0)
+				{					
+					if (above < 999) 
+					{ 
+						above++;
+						indexes.AddRange(Binary_Search(arr, above, false)); 
 					}
-
-					greater++;
-				}
-
-				if (lesser >= 0)
-				{
-					int leftIndex = 0;
-					int rightIndex = arr.Length - 1;
-
-					while (leftIndex <= rightIndex)
-					{
-						int midIndex = (leftIndex + rightIndex) / 2;
-
-						if (arr[midIndex] == lesser)
-						{
-							indices.Add(midIndex);
-							break;
-						}
-						else if (arr[midIndex] < lesser)
-						{
-							leftIndex = midIndex + 1;
-						}
-						else
-						{
-							rightIndex = midIndex - 1;
-						}
+					if (below > 0) 
+					{ 
+						below--;
+						indexes.AddRange(Binary_Search(arr, below, false));
 					}
-
-					lesser--;
+					Console.WriteLine("Now looking for " + above + " and " + below + ".");
 				}
 			}
-
-			return indices.ToArray();
+			return indexes.ToArray();
 		}
-
 	}
 }
