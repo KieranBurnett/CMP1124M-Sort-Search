@@ -32,10 +32,22 @@
 					Console.WriteLine("\nChoose for "+Id+":\n(1) Bubble Sort,\n(2) Insertion Sort,\n(3) Merge Sort,\n(4) Quick Sort");
 					int choice = int.Parse(Console.ReadLine());
 					var watch = System.Diagnostics.Stopwatch.StartNew();
-					if (choice == 1) { Ascending = Sorts.Bubble_Sort(Unsorted_array); watch.Stop(); Console.WriteLine("Roughly " + watch.ElapsedMilliseconds+"ms elapsed"); break; }
-					else if (choice == 2) { Ascending = Sorts.Insertion_Sort(Unsorted_array); watch.Stop(); Console.WriteLine("Roughly " + watch.ElapsedMilliseconds + "ms elapsed"); break; }
-					else if (choice == 3) { Ascending = Sorts.Selection_Sort(Unsorted_array); watch.Stop(); Console.WriteLine("Roughly " + watch.ElapsedMilliseconds + "ms elapsed"); break; }
-					else if (choice == 4) { Ascending = Sorts.Quick_Sort(Unsorted_array); watch.Stop(); Console.WriteLine("Roughly " + watch.ElapsedMilliseconds + "ms elapsed"); break; }
+					if (choice == 1) { Ascending = Sorts.Bubble_Sort(Unsorted_array, true); 
+						watch.Stop(); Console.WriteLine("Roughly " + watch.ElapsedMilliseconds+"ms elapsed");
+						Descending = Sorts.Bubble_Sort(Unsorted_array, false);
+						break; }
+					else if (choice == 2) { Ascending = Sorts.Insertion_Sort(Unsorted_array, true); 
+						watch.Stop(); Console.WriteLine("Roughly " + watch.ElapsedMilliseconds + "ms elapsed");
+						Descending = Sorts.Insertion_Sort(Unsorted_array, false);
+						break; }
+					else if (choice == 3) { Ascending = Sorts.Selection_Sort(Unsorted_array, true); 
+						watch.Stop(); Console.WriteLine("Roughly " + watch.ElapsedMilliseconds + "ms elapsed");
+						Descending = Sorts.Insertion_Sort(Unsorted_array, false);
+						break; }
+					else if (choice == 4) { Ascending = Sorts.Quick_Sort(Unsorted_array, true); 
+						watch.Stop(); Console.WriteLine("Roughly " + watch.ElapsedMilliseconds + "ms elapsed");
+						Descending = Sorts.Insertion_Sort(Unsorted_array, false);
+						break; }
 					else { Console.WriteLine("Not a valid number in this case,"); }
 				}
 				catch
@@ -44,7 +56,6 @@
 					continue;
 				}
 			}
-			Descending = Sorts.Flip(Ascending);
 		}
 		public Road(Road First, Road Second) // for merging roads
 		{
@@ -61,10 +72,34 @@
 					Console.WriteLine("\nChoose for " + Id + ":\n(1) Bubble Sort,\n(2) Insertion Sort,\n(3) Merge Sort,\n(4) Quick Sort");
 					int choice = int.Parse(Console.ReadLine());
 					var watch = System.Diagnostics.Stopwatch.StartNew();
-					if (choice == 1) { Ascending = Sorts.Bubble_Sort(Unsorted_array); watch.Stop(); Console.WriteLine("Roughly "+watch.ElapsedMilliseconds + "ms elapsed"); break; }
-					else if (choice == 2) { Ascending = Sorts.Insertion_Sort(Unsorted_array); watch.Stop(); Console.WriteLine("Roughly " + watch.ElapsedMilliseconds + "ms elapsed"); break; }
-					else if (choice == 3) { Ascending = Sorts.Selection_Sort(Unsorted_array); watch.Stop(); Console.WriteLine("Roughly " + watch.ElapsedMilliseconds + "ms elapsed"); break; }
-					else if (choice == 4) { Ascending = Sorts.Quick_Sort(Unsorted_array); watch.Stop(); Console.WriteLine("Roughly " + watch.ElapsedMilliseconds + "ms elapsed"); break; }
+					if (choice == 1)
+					{
+						Ascending = Sorts.Bubble_Sort(Unsorted_array, true);
+						watch.Stop(); Console.WriteLine("Roughly " + watch.ElapsedMilliseconds + "ms elapsed");
+						Descending = Sorts.Bubble_Sort(Unsorted_array, false);
+						break;
+					}
+					else if (choice == 2)
+					{
+						Ascending = Sorts.Insertion_Sort(Unsorted_array, true);
+						watch.Stop(); Console.WriteLine("Roughly " + watch.ElapsedMilliseconds + "ms elapsed");
+						Descending = Sorts.Insertion_Sort(Unsorted_array, false);
+						break;
+					}
+					else if (choice == 3)
+					{
+						Ascending = Sorts.Selection_Sort(Unsorted_array, true);
+						watch.Stop(); Console.WriteLine("Roughly " + watch.ElapsedMilliseconds + "ms elapsed");
+						Descending = Sorts.Insertion_Sort(Unsorted_array, false);
+						break;
+					}
+					else if (choice == 4)
+					{
+						Ascending = Sorts.Quick_Sort(Unsorted_array, true);
+						watch.Stop(); Console.WriteLine("Roughly " + watch.ElapsedMilliseconds + "ms elapsed");
+						Descending = Sorts.Insertion_Sort(Unsorted_array, false);
+						break;
+					}
 					else { Console.WriteLine("Not a valid number in this case,"); }
 				}
 				catch
@@ -73,7 +108,6 @@
 					continue;
 				}
 			}
-			Descending = Sorts.Flip(Ascending);
 		}
 		public void Display()
 		{

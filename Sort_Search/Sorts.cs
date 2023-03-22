@@ -2,6 +2,7 @@
 {
 	class Sorts
 	{
+		/*
 		public static int[] Flip(int[] arr)
 		{
 			int[] Descending = new int[arr.Length];
@@ -10,7 +11,7 @@
 				Descending[i] = arr[arr.Length - 1 - i];
 			}
 			return Descending;
-		}
+		}*/
 		public static int[] Bubble_Sort(int[] arr, bool ascending)
 		{
 			int[] sorted = new int[arr.Length];
@@ -125,14 +126,14 @@
 				int[] left = arr.Where(x => x < pivot).ToArray();
 				int[] middle = arr.Where(x => x == pivot).ToArray();
 				int[] right = arr.Where(x => x > pivot).ToArray();
-				return (Quick_Sort(left, ascending).Concat(middle).Concat(Quick_Sort(right, ascending)).ToArray());
+				return (Quick_Sort(left, true).Concat(middle).Concat(Quick_Sort(right, true)).ToArray());
 			}
 			else
 			{
-				int[] left = arr.Where(x => x < pivot).ToArray();
+				int[] left = arr.Where(x => x > pivot).ToArray();
 				int[] middle = arr.Where(x => x == pivot).ToArray();
-				int[] right = arr.Where(x => x > pivot).ToArray();
-				return (Quick_Sort(left, ascending).Concat(middle).Concat(Quick_Sort(right, ascending)).ToArray());
+				int[] right = arr.Where(x => x < pivot).ToArray();
+				return (Quick_Sort(left, false).Concat(middle).Concat(Quick_Sort(right, false)).ToArray());
 			}
 		}
 	}
