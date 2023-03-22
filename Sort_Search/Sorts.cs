@@ -14,11 +14,7 @@
 		}*/
 		public static int[] Bubble_Sort(int[] arr, bool ascending)
 		{
-			int[] sorted = new int[arr.Length]; // create a new array to store the sorted values
-			for (int i = 0; i < arr.Length; i++)
-			{
-				sorted[i] = arr[i];
-			}
+			int[] sorted = (int[])arr.Clone(); // create a new array to store the sorted values
 			int temp;
 			for (int i = 0; i < sorted.Length - 1; i++) // loop through the array
 			{
@@ -48,11 +44,7 @@
 		}
 		public static int[] Insertion_Sort(int[] arr, bool ascending)
 		{
-			int[] sorted = new int[arr.Length]; // create a new array to store the sorted values 
-			for (int i = 0; i < arr.Length; i++)
-			{
-				sorted[i] = arr[i];
-			}
+			int[] sorted = (int[])arr.Clone(); // create a new array to store the sorted values
 			int temp;
 			for (int i = 1; i < sorted.Length; i++) // loop through whole array
 			{
@@ -82,11 +74,7 @@
 		}
 		public static int[] Selection_Sort(int[] arr, bool ascending)
 		{
-			int[] sorted = new int[arr.Length]; // create a new array to store the sorted values
-			for (int i = 0; i < arr.Length; i++)
-			{
-				sorted[i] = arr[i];
-			}
+			int[] sorted = (int[])arr.Clone(); // create a new array to store the sorted values
 			int temp;
 			for (int i = 0; i < sorted.Length - 1; i++) // loops through the array
 			{
