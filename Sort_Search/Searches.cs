@@ -5,12 +5,12 @@
 		public static int[] Linear_Search(int[] arr, int value)
 		{
 			Console.WriteLine("Searching for " + value);
-			var list = new List<int>();
-			for (int i = 0; i < arr.Length; i++)
+			var list = new List<int>(); // create a list to store the indexes of the value
+			for (int i = 0; i < arr.Length; i++) // loop through the array
 			{
-				if (arr[i] == value)
+				if (arr[i] == value) // if the value is found
 				{
-					list.Add(i);
+					list.Add(i); // add the index to the list
 				}
 			}
 			// if list is empty, try using the number above and below the value
@@ -21,14 +21,14 @@
 				while (list.Count == 0)
 				{
 					Console.WriteLine("Now looking for " + above + " and " + below + ".");
-					for (int i = 0; i < arr.Length; i++)
+					for (int i = 0; i < arr.Length; i++) // loop through the array
 					{
-						if (arr[i] == above || arr[i] == below)
+						if (arr[i] == above || arr[i] == below) // if the value is found
 						{
 							list.Add(i);
 						}
 					}
-					above++;
+					if (above < 999) { above++; } // keeps the values within the correct range of 0-1000
 					if (below > 0) { below--; }
 				}
 			}
@@ -36,12 +36,12 @@
 		}
 		public static int[] Binary_Search(int[] arr, int value, bool first_Pass)
 		{
-			List<int> indexes = new List<int>();
+			List<int> indexes = new List<int>(); // create a list to store the indexes of the value
 
 			int min = 0;
 			int max = arr.Length - 1;
 
-			while (min <= max)
+			while (min <= max) // loop until the value is found
 			{
 				int mid = (min + max) / 2;
 
@@ -49,15 +49,15 @@
 				{
 					// Value found, find all occurrences
 					int lower = mid - 1;
-					while (lower >= 0 && arr[lower] == value)
+					while (lower >= 0 && arr[lower] == value) // add all the indexes below the middle index
 					{
 						indexes.Add(lower);
 						lower--;
 					}
-					indexes.Add(mid);
+					indexes.Add(mid); // add the middle index
 
 					int upper = mid + 1;
-					while (upper < arr.Length && arr[upper] == value)
+					while (upper < arr.Length && arr[upper] == value) // add all the indexes above the middle index
 					{
 						indexes.Add(upper);
 						upper++;
@@ -79,12 +79,12 @@
 				Console.WriteLine("Unable to find "+value);
 				int above = value;
 				int below = value;
-				while (indexes.Count==0)
+				while (indexes.Count==0) // while a value has not been found
 				{					
 					if (above <= 999) 
 					{ 
 						above++;
-						indexes.AddRange(Binary_Search(arr, above, false)); 
+						indexes.AddRange(Binary_Search(arr, above, false)); // add the indexes to the list
 					}
 					if (below > 0) 
 					{ 
