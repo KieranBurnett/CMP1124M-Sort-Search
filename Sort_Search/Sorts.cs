@@ -11,7 +11,7 @@
 			}
 			return Descending;
 		}
-		public static int[] Bubble_Sort(int[] arr)
+		public static int[] Bubble_Sort(int[] arr, bool ascending)
 		{
 			int[] sorted = new int[arr.Length];
 			for (int i = 0; i < arr.Length; i++)
@@ -23,17 +23,29 @@
 			{
 				for (int j = 0; j < sorted.Length - i - 1; j++)
 				{
-					if (sorted[j] > sorted[j + 1])
+					if (ascending)
 					{
-						temp = sorted[j];
-						sorted[j] = sorted[j + 1];
-						sorted[j + 1] = temp;
+						if (sorted[j] > sorted[j + 1])
+						{
+							temp = sorted[j];
+							sorted[j] = sorted[j + 1];
+							sorted[j + 1] = temp;
+						}
+					}
+					else
+					{
+						if (sorted[j] < sorted[j + 1])
+						{
+							temp = sorted[j];
+							sorted[j] = sorted[j + 1];
+							sorted[j + 1] = temp;
+						}
 					}
 				}
 			}
 			return sorted;
 		}
-		public static int[] Insertion_Sort(int[] arr)
+		public static int[] Insertion_Sort(int[] arr, bool ascending)
 		{
 			int[] sorted = new int[arr.Length];
 			for (int i = 0; i < arr.Length; i++)
@@ -45,17 +57,29 @@
 			{
 				for (int j = i; j > 0; j--)
 				{
-					if (sorted[j] < sorted[j - 1])
+					if (ascending)
+					{ 
+						if (sorted[j] < sorted[j - 1])
+						{
+							temp = sorted[j];
+							sorted[j] = sorted[j - 1];
+							sorted[j - 1] = temp;
+						}
+					}
+					else
 					{
-						temp = sorted[j];
-						sorted[j] = sorted[j - 1];
-						sorted[j - 1] = temp;
+						if (sorted[j] > sorted[j - 1])
+						{
+							temp = sorted[j];
+							sorted[j] = sorted[j - 1];
+							sorted[j - 1] = temp;
+						}
 					}
 				}
 			}
 			return sorted;
 		}
-		public static int[] Selection_Sort(int[] arr)
+		public static int[] Selection_Sort(int[] arr, bool ascending)
 		{
 			int[] sorted = new int[arr.Length];
 			for (int i = 0; i < arr.Length; i++)
@@ -68,9 +92,19 @@
 				int min = i;
 				for (int j = i + 1; j < sorted.Length; j++)
 				{
-					if (sorted[j] < sorted[min])
+					if (ascending)
 					{
-						min = j;
+						if (sorted[j] < sorted[min])
+						{
+							min = j;
+						}
+					}
+					else
+					{
+						if (sorted[j] > sorted[min])
+						{
+							min = j;
+						}
 					}
 				}
 				temp = sorted[i];
@@ -79,17 +113,27 @@
 			}
 			return sorted;
 		}
-		public static int[] Quick_Sort(int[] arr)
+		public static int[] Quick_Sort(int[] arr, bool ascending)
 		{
 			if (arr.Length <= 1)
 			{
 				return arr;
 			}
 			int pivot = arr[arr.Length / 2];
-			int[] left = arr.Where(x => x < pivot).ToArray();
-			int[] middle = arr.Where(x => x == pivot).ToArray();
-			int[] right = arr.Where(x => x > pivot).ToArray();
-			return (Quick_Sort(left).Concat(middle).Concat(Quick_Sort(right)).ToArray());
+			if (ascending)
+			{
+				int[] left = arr.Where(x => x < pivot).ToArray();
+				int[] middle = arr.Where(x => x == pivot).ToArray();
+				int[] right = arr.Where(x => x > pivot).ToArray();
+				return (Quick_Sort(left, ascending).Concat(middle).Concat(Quick_Sort(right, ascending)).ToArray());
+			}
+			else
+			{
+				int[] left = arr.Where(x => x < pivot).ToArray();
+				int[] middle = arr.Where(x => x == pivot).ToArray();
+				int[] right = arr.Where(x => x > pivot).ToArray();
+				return (Quick_Sort(left, ascending).Concat(middle).Concat(Quick_Sort(right, ascending)).ToArray());
+			}
 		}
 	}
 }
