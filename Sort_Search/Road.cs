@@ -57,7 +57,7 @@
 				}
 			}
 		}
-		public Road(Road First, Road Second) // for merging roads
+		public Road(Road First, Road Second) // for merging roads "https://www.geeksforgeeks.org/c-sharp-constructor-overloading/" used for reference on multiple constructor classes
 		{
 			if ( First.Id.Split("_")[2] == "2048" || Second.Id.Split("_")[2] == "2048") 
 			{
